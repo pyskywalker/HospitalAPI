@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,HospitalRooms,UserType
+from .models import User,HospitalRoom,UserType
 from knox.models import AuthToken
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 class HospitalRoomsSerializer(serializers.ModelSerializer):
     class Meta:
-        model=HospitalRooms
+        model=HospitalRoom
         fields='_all_'
 
 class UserTypeSerializer(serializers.ModelSerializer):
@@ -21,6 +21,8 @@ class UserTypeSerializer(serializers.ModelSerializer):
         model=UserType
         fields='_all_'
 class UserSerializer(serializers.ModelSerializer):
+    room=HospitalRoomsSerializer()
+    usertype=UserTypeSerializer()
     class Meta:
         model=User
         fields='_all_'

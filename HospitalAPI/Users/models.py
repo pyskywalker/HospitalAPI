@@ -22,29 +22,9 @@ class CustomAccountManager(BaseUserManager):
         if other_fields.get('is_staff') is not True:
             raise ValueError('Superuser must be assigned to is_superuser=True')
         return self.create_user(username,password,**other_fields)
-
-class User(AbstractBaseUser,PermissionsMixin):
-    username=models.CharField(max_length=20,unique=True)
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
-    room=models.ForeignKey(HospitalRooms)
-    usertype=models.OneToOneField(UserType,on_delete=models.DO_NOTHING)
-    phone-number=models.CharField(max_length=10,blank=True)
-    description=models.TextField(null=True)
-    options=(('doctor','Doctor'),('pharmacist','Pharmacist'))
-    usertype=models.CharField(max_length=10,choices=options, default="hospital")
-    date_added=models.DateTimeField(auto_now_add=True)
-    date_modified=models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return f"{self.username}"
-    is_staff=models.BooleanField(default=True)
-    is_active=models.BooleanField(default=True)
-
-    objects= CustomAccountManager()
-    USERNAME_FIELD='username'
-    REQUIRED_FIELDS=['first_name','last_name','usertype']
-class HospitalRooms():
-    room_number=models.IntegerField()
+class HospitalRoom(models.Model):
+    room_number=models.CharField(max_length=5)
+    description=models.TextField()
     def __str__(self):
         return f"Room {self.room_number}"
 class UserType(models.Model):
@@ -54,3 +34,21 @@ class UserType(models.Model):
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
         return f'{self.id}:{self.name}'
+class User(AbstractBaseUser,PermissionsMixin):
+    username=models.CharField(max_length=20,unique=True)
+    room=models.OneToOneField(HospitalRoom,on_delete=models.SET_NULL,null=True)
+    first_name=models.CharField(max_length=50)
+    last_name=models.CharField(max_length=50)
+    usertype=models.ForeignKey(UserType,on_delete=models.SET_NULL,null=True)
+    phone=models.CharField(max_length=10,blank=True)
+    description=models.TextField(null=True)
+    date_added=models.DateTimeField(auto_now_add=True)
+    date_modified=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return f"{self.username}"
+    is_staff=models.BooleanField(default=True)
+    is_active=models.BooleanField(default=True)
+
+    objects= CustomAccountManager()
+    USERNAME_FIELD='username'
+    REQUIRED_FIELDS=[]
