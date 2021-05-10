@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status,generics
 from rest_framework.response import Response
@@ -14,7 +13,7 @@ from knox import views as knox_views
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
 
-class UserAPIView(generics.ListCreateAPIView):
+class UsersAPI(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset=User.objects.all()
     serializer_class=UserSerializer

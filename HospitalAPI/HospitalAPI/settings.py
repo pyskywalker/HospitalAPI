@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'Users',
     'Sales',
     'Pharmacy',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

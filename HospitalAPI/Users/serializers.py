@@ -14,15 +14,19 @@ class RegisterSerializer(serializers.ModelSerializer):
 class HospitalRoomsSerializer(serializers.ModelSerializer):
     class Meta:
         model=HospitalRoom
-        fields='_all_'
+        fields="__all__"
 
 class UserTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserType
-        fields='_all_'
+        fields="__all__"
 class UserSerializer(serializers.ModelSerializer):
     room=HospitalRoomsSerializer()
     usertype=UserTypeSerializer()
     class Meta:
         model=User
-        fields='_all_'
+        fields="__all__"
+class RestrictedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['id','first_name','last_name','room','usertype','phone']
