@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status,generics
 from rest_framework.response import Response
-from .models import Order,OrderedItem,Invoice,Transaction,Appointment
+from .models import Order,OrderedItem,Invoice,Transaction
 from rest_framework.permissions import IsAuthenticated
 from .serializers import OrderSerializer,ItemSerializer,InvoiceSerializer,TransactionSerializer
 # Create your views here.
@@ -18,10 +18,10 @@ class InvoiceAPI(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset=Invoice.objects.all()
     serializer_class=InvoiceSerializer
-class AppointmentAPI(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
-    queryset=Appointment.objects.all()
-    serializer_class=AppointmentSerializer
+# class AppointmentAPI(generics.ListCreateAPIView):
+#     permission_classes = (IsAuthenticated,)
+#     queryset=Appointment.objects.all()
+#     serializer_class=AppointmentSerializer
 class TransactionAPI(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset=Invoice.objects.all()

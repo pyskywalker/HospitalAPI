@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import PatientType,Patient,Appointment,Labtest,LabTestItem,Diagnoses
 from Users.serializers import RestrictedUserSerializer
+# from Pharmacy.serializers import MedicineBrandSerializer
 from rest_framework import serializers
 
 class PatientTypeSerializer(serializers.ModelSerializer):
@@ -8,7 +9,7 @@ class PatientTypeSerializer(serializers.ModelSerializer):
         model=PatientType
         fields=['id','name','description']
 class PatientSerializer(serializers.ModelSerializer):
-    medicine_brand=MedicineBrandSerializer()
+    patient_type=PatientTypeSerializer()
     class Meta:
         model=Patient
         fields='__all__'

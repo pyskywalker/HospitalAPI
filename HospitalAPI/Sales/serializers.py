@@ -35,5 +35,5 @@ class AppointmentFeeSerializer(serializers.ModelSerializer):
     patient=PatientSerializer()
     transaction=TransactionSerializer()
     class Meta:
-        model=User
+        model=AppointmentFee
         fields="__all__"

@@ -13,22 +13,24 @@ from datetime import timedelta
 from pathlib import Path
 import os
 from django.conf import settings
-# import django_heroku
+import environ
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+env=environ.Env()
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_w6$*y*o8q%+j1k%j#br233uu2-szr!2-kh^mfltutnsr)p5mn'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['brungashospital.herokuapp.com','localhost']
 
 
 # Application definition
@@ -85,8 +87,19 @@ REST_KNOX = {'TOKEN_TTL': timedelta(minutes=20)}
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+ 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ 
+        'NAME': env('db'),
+ 
+        'USER': env('dbuser'),
+ 
+        'PASSWORD': env('password'),
+ 
+        'HOST': env('host'),
+ 
+        'PORT': env('port'),
+ 
     }
 }
 

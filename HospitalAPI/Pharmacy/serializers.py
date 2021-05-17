@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Medicine,MSDZone,Batch, MedicineBrand
+from .models import Medicine,MSDZone,Batch, MedicineBrand,Supplier
 from Users.models import User
 from rest_framework import serializers
 

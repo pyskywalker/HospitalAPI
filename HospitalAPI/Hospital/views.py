@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework import status,generics
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .models import Patient,Appointment,Labtest,LabTestItem,Diagnoses
 from .serializers import PatientSerializer,AppointmentSerializer,LabTestItemSerializer,LabtestSerializer,DiagnosesSerializer
 # Create your views here.
@@ -16,7 +20,7 @@ class LabtestAPI(generics.ListCreateAPIView):
     serializer_class=LabtestSerializer
 class LabItemAPI(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
-    queryset=LabItemAPI.objects.all()
+    queryset=LabTestItem.objects.all()
     serializer_class=LabTestItemSerializer
 class DiagnosesAPI(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
