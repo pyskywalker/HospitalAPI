@@ -111,7 +111,7 @@ DATABASES = {
  
         'USER': 'postgres',
  
-        'PASSWORD': 'env('USER_PASSWORD')',
+        'PASSWORD': env('USER_PASSWORD'),
  
         'HOST': 'localhost',
  
