@@ -85,20 +85,37 @@ REST_KNOX = {'TOKEN_TTL': timedelta(minutes=20)}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+ 
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ 
+#         'NAME': env('DB'),
+ 
+#         'USER': env('DBUSER'),
+ 
+#         'PASSWORD': env('USER_PASSWORD'),
+ 
+#         'HOST': env('HOST'),
+ 
+#         'PORT': env('PORT'),
+ 
+#     }
+# }
 DATABASES = {
     'default': {
  
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
  
-        'NAME': env('DB'),
+        'NAME': 'Hospital',
  
-        'USER': env('DBUSER'),
+        'USER': 'postgres',
  
-        'PASSWORD': env('USER_PASSWORD'),
+        'PASSWORD': 'env('USER_PASSWORD')',
  
-        'HOST': env('HOST'),
+        'HOST': 'localhost',
  
-        'PORT': env('PORT'),
+        'PORT': '5432',
  
     }
 }
