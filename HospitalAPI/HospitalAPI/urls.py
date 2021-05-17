@@ -19,7 +19,10 @@ from Users.views import LoginAPI,RegisterAPI,UsersAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include("Users.urls")),
+    path('users/',include("Users.urls")),
+    path('hospital/',include("Hospital.urls")),
+    path('pharmacy/',include("Pharmacy.urls")),
+    path('sales/',include("Sales.urls")),
     path('login/',LoginAPI.as_view(), name="login"),
     path('register/',RegisterAPI.as_view(),name='register')
 ]

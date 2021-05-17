@@ -15,14 +15,16 @@ class SupplierAPI(generics.ListCreateAPIView):
     queryset=Supplier.objects.all()
     serializer_class=SupplierSerializer
 
-class MedicineDetailView(generics.RetrieveCreateDestroyAPIView):
-    permission_classes=(IsAuthenticated,)
-    def query_set(id):
-        return pass
-    serializer_class=(IsAuthenticated,)
+# class MedicineDetailView(generics.RetrieveCreateDestroyAPIView):
+#     permission_classes=(IsAuthenticated,)
+#     def query_set(id):
+#         return pass
+#     serializer_class=(IsAuthenticated,)
 
-class BatchDetailView(generics.RetrieveCreateDestroyAPIView):
-    permission_classes=(IsAuthenticated,)
-    def query_set(id):
-        return pass
-    serializer_class=BatchSerializer
+# class BatchDetailView(generics.RetrieveCreateDestroyAPIView):
+#     permission_classes=(IsAuthenticated,)
+#     def query_set(id):
+#         return pass
+#     serializer_class=BatchSerializer
+
+
