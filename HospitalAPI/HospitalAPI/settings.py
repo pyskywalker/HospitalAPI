@@ -179,3 +179,6 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     os.path.join(settings.PROJECT_ROOT, 'static'),
 # ]
+
+#sets django heroku configurations
+django_heroku.settings(locals())
