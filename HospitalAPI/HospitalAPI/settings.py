@@ -85,40 +85,40 @@ REST_KNOX = {'TOKEN_TTL': timedelta(minutes=20)}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
- 
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
- 
-#         'NAME': env('DB'),
- 
-#         'USER': env('DBUSER'),
- 
-#         'PASSWORD': env('USER_PASSWORD'),
- 
-#         'HOST': env('HOST'),
- 
-#         'PORT': env('PORT'),
- 
-#     }
-# }
 DATABASES = {
     'default': {
  
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
  
-        'NAME': 'Hospital',
+        'NAME': env('DB'),
  
-        'USER': 'postgres',
+        'USER': env('DBUSER'),
  
-        'PASSWORD': 'uefa2012',
+        'PASSWORD': env('USER_PASSWORD'),
  
-        'HOST': 'localhost',
+        'HOST': env('HOST'),
  
-        'PORT': '5432',
+        'PORT': env('PORT'),
  
     }
 }
+# DATABASES = {
+#     'default': {
+ 
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ 
+#         'NAME': 'Hospital',
+ 
+#         'USER': 'postgres',
+ 
+#         'PASSWORD': 'uefa2012',
+ 
+#         'HOST': 'localhost',
+ 
+#         'PORT': '5432',
+ 
+#     }
+# }
 DATABASE_URL='postgres://postgres:uefa2012@127.0.0.1:5432/Hospital'
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
