@@ -119,7 +119,7 @@ DATABASES = {
  
 #     }
 # }
-DATABASE_URL='postgres://postgres:uefa2012@127.0.0.1:5432/Hospital'
+DATABASE_URL=env('DATABASE_URL')
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
