@@ -19,10 +19,11 @@ class HospitalRoomsSerializer(serializers.ModelSerializer):
 class UserTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserType
-        fields="__all__"
+        fields=['id','name','description']
 class UserSerializer(serializers.ModelSerializer):
-    room=HospitalRoomsSerializer()
-    usertype=UserTypeSerializer()
+    room_number=serializers.CharField(source="room.room_number",read_only=True)
+    usertype_name=serializers.CharField(source="usertype.name",read_only=True)
+    usertype_description=serializers.CharField(source="usertype.description",read_only=True)
     class Meta:
         model=User
         fields="__all__"

@@ -10,8 +10,8 @@ from Users.models import User
 # Create your models here.
 class MSDZone(models.Model):
     zone_name=models.CharField(max_length=50)
-    zone_location=models.CharField(max_length=30)
-    description=models.TextField()
+    location=models.CharField(max_length=30)
+    description=models.TextField(null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -21,7 +21,7 @@ class MSDZone(models.Model):
 class MedicineBrand(models.Model):
     brand_name=models.CharField(max_length=50)
     location=models.CharField(max_length=50)
-    description=models.TextField()
+    description=models.TextField(null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -32,11 +32,11 @@ class Batch(models.Model):
     batch_number=models.IntegerField()
     medicine_brand=models.ForeignKey(MedicineBrand,on_delete=models.PROTECT)
     medicine_name=models.CharField(max_length=30)
-    description=models.TextField()
+    description=models.TextField(null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return f'{self.id}'
+        return f'{self.batch_number}-{self.medicine_name}'
    
 
 class Medicine(models.Model):
@@ -45,8 +45,9 @@ class Medicine(models.Model):
     quantity=models.IntegerField()
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
-    status=models.TextField()
+    status=models.CharField(max_length=30)
     price=models.FloatField()
+    description=models.TextField(null=True, blank=True)
     batch=models.ForeignKey(Batch, on_delete=models.CASCADE)
     msd_zone=models.ForeignKey(MSDZone, on_delete=models.CASCADE)
     def __str__(self):

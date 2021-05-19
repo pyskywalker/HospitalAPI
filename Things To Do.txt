@@ -1,0 +1,2 @@
+1.set `read_only=True` on nested serializer fields
+2.handling nested serializers, how to add on fields with nested serializers

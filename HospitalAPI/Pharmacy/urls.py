@@ -12,6 +12,4 @@ urlpatterns=[
     path('medicine',MedicineAPI.as_view(),name="medicine"),
     path('batches',BatchAPI.as_view(),name="batch"),
     path('suppliers',SupplierAPI.as_view(),name="suppliers"),
-   
-
 ]

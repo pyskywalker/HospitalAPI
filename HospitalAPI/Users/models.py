@@ -24,29 +24,29 @@ class CustomAccountManager(BaseUserManager):
         return self.create_user(username,password,**other_fields)
 class HospitalRoom(models.Model):
     room_number=models.CharField(max_length=5)
-    description=models.TextField()
+    description=models.TextField(null=True, blank=True)
     def __str__(self):
         return f"Room {self.room_number}"
 class UserType(models.Model):
     name=models.CharField(max_length=30)
-    description=models.TextField()
+    description=models.TextField(null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
         return f'{self.id}:{self.name}'
 class User(AbstractBaseUser,PermissionsMixin):
     username=models.CharField(max_length=20,unique=True)
-    room=models.OneToOneField(HospitalRoom,on_delete=models.SET_NULL,null=True)
+    room=models.OneToOneField(HospitalRoom,on_delete=models.SET_NULL,null=True, related_name="staffs_room")
     first_name=models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
     usertype=models.ForeignKey(UserType,on_delete=models.SET_NULL,null=True)
     phone=models.CharField(max_length=10,blank=True)
-    description=models.TextField(null=True)
+    description=models.TextField(blank=True,null=True)
     date_added=models.DateTimeField(auto_now_add=True)
     date_modified=models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"{self.username}"
-    is_staff=models.BooleanField(default=True)
+    is_staff=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
 
     objects= CustomAccountManager()

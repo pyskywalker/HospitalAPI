@@ -13,6 +13,7 @@ class UserAdminConfig(UserAdmin):
     ('Personal',{'fields':('description','phone')}))
 
 admin.site.register(User,UserAdminConfig)
-mymodels=[UserType,HospitalRoom]
-for model in mymodels:
-    admin.site.register(model)
+admin.site.register(UserType)
+admin.site.register(HospitalRoom)
+
+    
